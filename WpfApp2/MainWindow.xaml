@@ -1,0 +1,113 @@
+﻿<Window x:Class="WpfApp2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp2"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="650" Width="900">
+    <Grid>
+        <StackPanel Width="278" Height="265" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <TextBlock TextAlignment="Center">Регистрация</TextBlock>
+            <TextBlock>Имя</TextBlock>
+            <TextBox Name="NameDoctorTextBox" HorizontalAlignment="Left"  Height="20" Width="100"></TextBox>
+            <TextBlock>Фамилия</TextBlock>
+            <TextBox Name="LastNameDoctorTextBox" HorizontalAlignment="Left"  Height="20" Width="100"></TextBox>
+            <TextBlock>Отчество</TextBlock>
+            <TextBox Name="MiddleNameDoctorTextBox" HorizontalAlignment="Left"  Height="20" Width="100"></TextBox>
+            <TextBlock>Пароль</TextBlock>
+            <PasswordBox Name="PasswordDoctorTextBox" HorizontalAlignment="Left"  Height="20" Width="100"></PasswordBox>
+            <TextBlock>Подтверждение пароля</TextBlock>
+            <PasswordBox Name="ConfirmDoctorTextBox" HorizontalAlignment="Left"   Height="20" Width="100"></PasswordBox>
+            <TextBlock>Специализация</TextBlock>
+            <TextBox Name="SpecialisationDoctorTextBox" HorizontalAlignment="Left"  Height="20" Width="100"></TextBox>
+
+            <Button x:Name="Register" Content="Зарегистрироваться" Click="Register_Click" Height="21"></Button>
+        </StackPanel>
+        <StackPanel Width="278" Height="356" HorizontalAlignment="Left" VerticalAlignment="Center"  >
+            <Canvas Width="278" Height="136">
+                <TextBlock  Height="20" Width="100" TextAlignment="Center" Canvas.Left="85" Canvas.Top="190" HorizontalAlignment="Center" VerticalAlignment="Top">Вход в аккаунт</TextBlock>
+                <TextBlock HorizontalAlignment="Center" Canvas.Top="219" VerticalAlignment="Top">Идентификатор</TextBlock>
+                <TextBox Name="IdEnter"  HorizontalAlignment="Center" Height="15" Width="200" Canvas.Top="240" VerticalAlignment="Top"></TextBox>
+                <TextBlock HorizontalAlignment="Center" Canvas.Top="255" VerticalAlignment="Top">Пароль</TextBlock>
+                <PasswordBox Name="PasswordEnter" HorizontalAlignment="Center"  Height="15" Width="100" Canvas.Top="276" VerticalAlignment="Top"></PasswordBox>
+                <Button Content="Войти в аккаунт" Height="20" Click="EnterAccount_Click" Canvas.Left="93" Canvas.Top="335" HorizontalAlignment="Center" VerticalAlignment="Top"></Button>
+            </Canvas>
+        </StackPanel>
+        <StackPanel  Width="245" Height="115" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,0,10"  >
+            <TextBlock FontSize="9" TextAlignment="Left" Width="220">Отображение информации о текущем пользователе</TextBlock>
+            <TextBlock>ID</TextBlock>
+            <TextBlock Text="{Binding CurrentDoctor.Id, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Width="188"></TextBlock>
+            <TextBlock>Специальность</TextBlock>
+            <TextBlock Text="{Binding CurrentDoctor.Specialisation, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Width="180"></TextBlock>
+        </StackPanel>
+        <StackPanel  Name="P_Information" Visibility="Hidden"  Width="299" Height="356" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock TextAlignment="Center">Найти пациента</TextBlock>
+            <TextBox Name="SearchPacientId"></TextBox>
+            <Button Content="Найти" Click="SearchClick"></Button>
+            <TextBlock TextAlignment="Center">Форма приема пациента</TextBlock>
+            <TextBlock>Имя</TextBlock>
+            <TextBlock Text="{Binding CurrentPacient.PName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+            <TextBlock>Фамилия</TextBlock>
+            <TextBlock Text="{Binding CurrentPacient.PLastName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+            <TextBlock>Отчество</TextBlock>
+            <TextBlock Text="{Binding CurrentPacient.PMiddleName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+            <TextBlock>Дата рождения</TextBlock>
+            <TextBlock Text="{Binding CurrentPacient.PBirthday, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+            <TextBlock>Дата обращения</TextBlock>
+            <TextBlock Text="{Binding CurrentPacient.PLastAppointment, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+
+            <TextBlock>Диагноз</TextBlock>
+            <TextBlock Text="{Binding CurrentPacient.PDiagnosis, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+            <TextBlock>Рекомендации</TextBlock>
+            <TextBlock Text="{Binding CurrentPacient.PRecommendations, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+        </StackPanel>
+        <StackPanel Name="P_Add" Visibility="Hidden" Width="278" Height="301" HorizontalAlignment="Right" VerticalAlignment="Top">
+            <TextBlock TextAlignment="Center">Форма добавления пациента</TextBlock>
+            <TextBlock>Фамилия</TextBlock>
+            <TextBox HorizontalAlignment="Left" Name="PLastNameBox" Height="20" Width="100"></TextBox>
+            <TextBlock>Имя</TextBlock>
+            <TextBox HorizontalAlignment="Left" Name="PNameBox" Height="20" Width="100"></TextBox>
+            <TextBlock>Отчество</TextBlock>
+            <TextBox HorizontalAlignment="Left"  Name="PMiddleNameBox" Height="20" Width="100"></TextBox>
+            <TextBlock>Дата рождения</TextBlock>
+            <DatePicker  Name="PBirthday" Height="24"></DatePicker>
+            <TextBlock>Дата обращения</TextBlock>
+            <DatePicker Name="PLastAppointment" Height="23"></DatePicker>
+            <TextBlock Height="15">Диагноз</TextBlock>
+            <TextBox HorizontalAlignment="Left"  Name="PDiagnosisTextBox" Height="20" Width="100"></TextBox>
+            <TextBlock>Рекомендация</TextBlock>
+            <TextBox HorizontalAlignment="Left"  Name="PRecomendationsTextBox" Height="20" Width="100"></TextBox>
+            <Button Content="Добавить" Click="PacientAdd_Click"></Button>
+        </StackPanel>
+        <StackPanel Name="D_Change" Visibility="Hidden" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="245">
+            <TextBlock TextAlignment="Center">Форма изменения информации о пациенте</TextBlock>
+            <TextBlock>Фамилия</TextBlock>
+            <TextBox Text="{Binding CurrentPacient.PLastName, Mode=TwoWay}"></TextBox>
+            <TextBlock>Имя</TextBlock>
+            <TextBox Text="{Binding CurrentPacient.PName, Mode=TwoWay}"></TextBox>
+            <TextBlock>Отчество</TextBlock>
+            <TextBox Text="{Binding CurrentPacient.PMiddleName, Mode=TwoWay}"></TextBox>
+            <TextBlock>Дата рождения</TextBlock>
+            <DatePicker Text="{Binding CurrentPacient.PBirthday, Mode=TwoWay}" Height="24"></DatePicker>
+            <TextBlock>Дата обращения</TextBlock>
+            <DatePicker Text="{Binding CurrentPacient.PLastAppointment, Mode=TwoWay}" Height="24"></DatePicker>
+            <TextBlock Height="15">Диагноз</TextBlock>
+            <TextBox Text="{Binding CurrentPacient.PDiagnosis, Mode=TwoWay}"></TextBox>
+            <TextBlock>Рекомендация</TextBlock>
+            <TextBox Text="{Binding CurrentPacient.PRecommendations, Mode=TwoWay}"></TextBox>
+            <Button  Content="Изменить информацию" Click="ChangePacient_Click"></Button>
+            <Button  Content="Отменить изменения" Click="DelayPacient_Click"></Button>
+        </StackPanel>
+
+
+        <WrapPanel Name="AllCount" Visibility="Hidden" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="650">
+            <TextBlock>Общее количество:</TextBlock>
+            <TextBlock Text="{Binding TotalCount}"/>
+            <TextBlock>Количество пользователей:</TextBlock>
+            <TextBlock Text="{Binding DoctorsCount}"/>
+            <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center">Количество пациентов:</TextBlock>
+            <TextBlock Text="{Binding PacientsCount}" HorizontalAlignment="Right"></TextBlock>
+        </WrapPanel>
+    </Grid>
+</Window>
